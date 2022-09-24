@@ -30,7 +30,7 @@
     </dependencies>
 
     <build>
-        <finalName>bot</finalName>
+        <finalName>maincamp</finalName>
         <defaultGoal>package</defaultGoal>
         <resources>
             <resource>
@@ -50,11 +50,11 @@
                 <version>2.2-beta-5</version>
                 <configuration>
                     <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                        <descriptorRef>jar</descriptorRef>
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>org.ussd.MainClass</mainClass>
+                            <mainClass>org.example.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
