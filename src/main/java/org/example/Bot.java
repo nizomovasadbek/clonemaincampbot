@@ -45,10 +45,11 @@ public class Bot extends TelegramLongPollingBot {
 
     private Logger logger = new Logger();
     private final int ERR_CODE = -1;
-
+    //private String path_app = "src/main/resouces/application.properties";
+    
     private Integer getAdminId() {
         try {
-            FileReader f = new FileReader("src/main/resources/application.properties");
+            FileReader f = new FileReader("application.properties");
             Properties properties = new Properties();
             properties.load(f);
             Integer adminId = Integer.parseInt(properties.getProperty("admin.id"));
