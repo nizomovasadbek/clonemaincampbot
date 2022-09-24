@@ -17,10 +17,11 @@ public class Logger {
 
     private final String E_LOG = "[\tERROR\t]\t";
     private final String I_LOG = "[\tINFO\t]\t";
-
+    private String path = "application.log";
+    
     private void writeFile(String text){
         try {
-            File f = new File("src/main/resources/application.log");
+            File f = new File(path);
             PrintWriter pw = new PrintWriter(f);
             pw.println(text);
             pw.close();
@@ -28,7 +29,8 @@ public class Logger {
             if (!f.exists()) {
                 f.createNewFile();
             }
-        }catch (IOException e){
+        }catch (Exception e){
+            path = "application.log";
             e.printStackTrace();
         }
     }

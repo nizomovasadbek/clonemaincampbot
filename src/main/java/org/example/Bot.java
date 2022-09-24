@@ -45,10 +45,11 @@ public class Bot extends TelegramLongPollingBot {
 
     private Logger logger = new Logger();
     private final int ERR_CODE = -1;
-
+    private String path_app = "application.properties";
+    
     private Integer getAdminId() {
         try {
-            FileReader f = new FileReader("src/main/resources/application.properties");
+            FileReader f = new FileReader(path_app);
             Properties properties = new Properties();
             properties.load(f);
             Integer adminId = Integer.parseInt(properties.getProperty("admin.id"));
@@ -926,7 +927,7 @@ public class Bot extends TelegramLongPollingBot {
     private String getBotUsernameAndToken(boolean isUser) {
         Properties p = new Properties();
         try {
-            FileReader fr = new FileReader("src/main/resources/application.properties");
+            FileReader fr = new FileReader(path_app);
                 /*
                 In application.properties you have to write properties like below:
                 bot.username=<username>
