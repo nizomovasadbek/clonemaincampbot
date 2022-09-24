@@ -17,7 +17,7 @@ public class Logger {
 
     private final String E_LOG = "[\tERROR\t]\t";
     private final String I_LOG = "[\tINFO\t]\t";
-    private String path = "src/main/resources/application.log";
+    private String path = "application.log";
     
     private void writeFile(String text){
         try {
