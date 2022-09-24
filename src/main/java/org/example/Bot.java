@@ -297,6 +297,7 @@ public class Bot extends TelegramLongPollingBot {
                 ScriptEngineManager manager = new ScriptEngineManager();
                 ScriptEngine engine = manager.getEngineByName("nashorn");
                 try {
+                    execute(msgt);
                     int aimp = (int) engine.eval(would_be_calc);
                     String kemp = String.format("<code>%d</code>", aimp);
                     msgt.setText(kemp);
