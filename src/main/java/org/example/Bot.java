@@ -60,8 +60,11 @@ public class Bot extends TelegramLongPollingBot {
         return ERR_CODE;
     }
 
-    private final Integer ADMIN_ID = getAdminId();
+    private Integer ADMIN_ID = 0;
 
+    public Bot(){
+        ADMIN_ID = getAdminId();
+    }
 
     private static String getStatus() throws Exception {
         String get_text = "";
