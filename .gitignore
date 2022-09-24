@@ -1,4 +1,4 @@
 /.idea
-.properties
-.log
+*.properties
+*.log
 /target
