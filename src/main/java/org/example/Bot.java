@@ -47,21 +47,21 @@ public class Bot extends TelegramLongPollingBot {
     private final int ERR_CODE = -1;
     private String path_app = "application.properties";
     
-    private Integer getAdminId() {
+    private Long getAdminId() {
         try {
             FileReader f = new FileReader(path_app);
             Properties properties = new Properties();
             properties.load(f);
-            Integer adminId = Integer.parseInt(properties.getProperty("admin.id"));
+            Long adminId = Long.parseLong(properties.getProperty("admin.id"));
             return adminId;
         } catch (IOException e) {
             logger.loge("File topilmadi");
         }
 
-        return ERR_CODE;
+        return Long.valueOf(-1);
     }
 
-    private Integer ADMIN_ID = 0;
+    private Long ADMIN_ID = Long.valueOf(0);
 
     public Bot(){
         ADMIN_ID = getAdminId();
@@ -483,6 +483,7 @@ public class Bot extends TelegramLongPollingBot {
             User callback_user = update.getCallbackQuery().getFrom();
 
             if (call_data.equals("obhavo")) {
+
                 InlineKeyboardMarkup region_markup = new InlineKeyboardMarkup();
                 List<InlineKeyboardButton> row1 = new ArrayList<InlineKeyboardButton>();
                 InlineKeyboardButton tashkent = new InlineKeyboardButton("Toshkent");
@@ -567,11 +568,21 @@ public class Bot extends TelegramLongPollingBot {
 
             if (call_data.equals("jizzakh")) {
 
+                InlineKeyboardMarkup reply = new InlineKeyboardMarkup();
+                List<List<InlineKeyboardButton>> dash = new ArrayList<>();
+                List<InlineKeyboardButton> row = new ArrayList<>();
+                InlineKeyboardButton back = new InlineKeyboardButton("<------Orqaga");
+                row.add(back);
+
+                dash.add(row);
+                reply.setKeyboard(dash);
+
                 Obhavo o = new Obhavo("Jizzax");
                 EditMessageText edit = new EditMessageText();
                 edit.setChatId(chat_id);
                 edit.setMessageId((int) message_id);
                 edit.setText("Jizzaxdagi ob-havo: " + o.getHarorat());
+                edit.setReplyMarkup(reply);
 
                 try {
                     execute(edit);
