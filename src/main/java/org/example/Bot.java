@@ -582,7 +582,7 @@ public class Bot extends TelegramLongPollingBot {
                 edit.setChatId(chat_id);
                 edit.setMessageId((int) message_id);
                 edit.setText("Jizzaxdagi ob-havo: " + o.getHarorat());
-                edit.setReplyMarkup(reply);
+                //edit.setReplyMarkup(reply);
 
                 try {
                     execute(edit);
