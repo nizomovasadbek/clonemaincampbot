@@ -568,21 +568,11 @@ public class Bot extends TelegramLongPollingBot {
 
             if (call_data.equals("jizzakh")) {
 
-                InlineKeyboardMarkup reply = new InlineKeyboardMarkup();
-                List<List<InlineKeyboardButton>> dash = new ArrayList<>();
-                List<InlineKeyboardButton> row = new ArrayList<>();
-                InlineKeyboardButton back = new InlineKeyboardButton("<------Orqaga");
-                row.add(back);
-
-                dash.add(row);
-                reply.setKeyboard(dash);
-
                 Obhavo o = new Obhavo("Jizzax");
                 EditMessageText edit = new EditMessageText();
                 edit.setChatId(chat_id);
                 edit.setMessageId((int) message_id);
                 edit.setText("Jizzaxdagi ob-havo: " + o.getHarorat());
-                //edit.setReplyMarkup(reply);
 
                 try {
                     execute(edit);
