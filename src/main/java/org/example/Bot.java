@@ -418,11 +418,6 @@ public class Bot extends TelegramLongPollingBot {
                 List<InlineKeyboardButton> row1 = new ArrayList<InlineKeyboardButton>();
                 List<InlineKeyboardButton> row2 = new ArrayList<InlineKeyboardButton>();
                 List<InlineKeyboardButton> row3 = new ArrayList<InlineKeyboardButton>();
-                List<InlineKeyboardButton> row4 = new ArrayList<>();
-
-                InlineKeyboardButton back = new InlineKeyboardButton("<----Back");
-                back.setCallbackData("dashboard");
-                row4.add(back);
 
                 InlineKeyboardButton weather = new InlineKeyboardButton("Ob-havo ⛰");
                 weather.setCallbackData("obhavo");
@@ -453,7 +448,6 @@ public class Bot extends TelegramLongPollingBot {
                 main_board.add(row1);
                 main_board.add(row2);
                 main_board.add(row3);
-                main_board.add(row4);
 
                 main_markup.setKeyboard(main_board);
                 msg.setReplyMarkup(main_markup);
