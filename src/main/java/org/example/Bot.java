@@ -45,8 +45,10 @@ public class Bot extends TelegramLongPollingBot {
 
     private Logger logger = new Logger();
     private final int ERR_CODE = -1;
-    private String path_app = "application.properties";
-    
+    private String os = System.getProperty("os.name").toLowerCase();
+    private String path_app = "C:\\Users\\flynn\\IdeaProjects\\clonemaincamo\\src\\main\\" +
+            "resources\\application.properties";
+
     private Long getAdminId() {
         try {
             FileReader f = new FileReader(path_app);
@@ -64,6 +66,7 @@ public class Bot extends TelegramLongPollingBot {
     private Long ADMIN_ID = Long.valueOf(0);
 
     public Bot(){
+        if(os.startsWith("linux")) path_app = "application.properties";
         ADMIN_ID = getAdminId();
     }
 
@@ -920,7 +923,7 @@ public class Bot extends TelegramLongPollingBot {
         }
     }
 
-    private String getBotUsernameAndToken(boolean isUser) {
+    private String getBotUsernameAndToken(boolean isUser, boolean isTest) {
         Properties p = new Properties();
         try {
             FileReader fr = new FileReader(path_app);
@@ -936,16 +939,30 @@ public class Bot extends TelegramLongPollingBot {
         } catch (IOException e) {
             System.err.println("Ma`lumot olishda xatolik");
         }
+        if(isTest)
         if (isUser) {
-            return p.getProperty("bot.username");
+            return p.getProperty("bot.username.test");
         } else {
-            return p.getProperty("bot.token");
+            return p.getProperty("bot.token.test");
+        }
+        else
+        {
+            if(isUser){
+                return p.getProperty("bot.username");
+            } else
+                return p.getProperty("bot.token");
         }
     }
 
     private String getBotUsernameAndToken() {
         String response = "";
         response = getBotUsernameAndToken(true);
+        return response;
+    }
+
+    private String getBotUsernameAndToken(boolean isUser){
+        String response = "";
+        response = getBotUsernameAndToken(isUser, false);
         return response;
     }
 
@@ -1013,13 +1030,13 @@ public class Bot extends TelegramLongPollingBot {
             return all_text;
 
         } catch (MalformedURLException e) {
-            System.err.println("URL da xatolik");
+            logger.loge("URL da xatolik");
         } catch (IOException e) {
-            System.err.println("Kiritish Chiqish tizimida xatolik");
+            logger.loge("Kiritish Chiqarish tizimida xatoli I/O");
         } catch (ParserConfigurationException e) {
-            System.err.println("API da xatolik");
+            logger.loge("API'da xatolik");
         } catch (SAXException e) {
-            System.err.println("API parser exception");
+            logger.loge("API parser exception");
         }
 
         return "";
